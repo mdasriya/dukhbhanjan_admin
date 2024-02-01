@@ -36,10 +36,12 @@ import {
   Text,
 } from "@chakra-ui/react";
 // import data from "../Data";
+import { UploadButton } from "@bytescale/upload-widget-react";
 import { useState, useEffect } from "react";
 import { SearchIcon } from "@chakra-ui/icons";
 import BeatLoader from 'react-spinners/BeatLoader';
 import axios from "axios";
+
 import { useToast } from '@chakra-ui/react'
 const Products = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -51,6 +53,15 @@ const Products = () => {
   const [editingProduct, setEditingProduct] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredData, setFilteredData] = useState(product);
+  const [image, setImage] = useState("")
+
+
+  const options = {
+    apiKey: "public_W142iSZ87iXtCgUK4ApLiW9ZU6X3",
+    maxFileCount: 1,
+    showFinishButton: true,
+   
+  };
 
 
   const renderComp = () => {
@@ -62,7 +73,6 @@ const Products = () => {
       const response = await axios.get(
         "https://outrageous-shoulder-pads-fly.cyclic.app/products"
       );
-      // console.log(data);
 
       setProducts(response.data);
     } catch (error) {
@@ -80,27 +90,32 @@ const Products = () => {
 
   const handleCloseAddModal = () => {
     setIsAddModalOpen(false);
+    setFormData({
+      title: '',
+      description: '',
+      image: '',
+      quantity: 0,
+      benefits: '',
+      qualities: [{ type: '', prices: [''] }],
+    });
   };
  
   const handleEditClick = (product) => {
     setEditingProduct(product);
     setIsModalOpen(true);
   };
-  const handleSaveEdit = () => {
-    if (editingProduct && editingProduct._id) {
-      axios
-        .put(
+  const handleSaveEdit = async () => {
+    try {
+      if (editingProduct && editingProduct._id) {
+        const res = await axios.put(
           `https://outrageous-shoulder-pads-fly.cyclic.app/products/${editingProduct._id}`,
           editingProduct
-        )
-        .then((res) => {
-          console.log("Product updated successfully");
-          fetchData();
-          handleCloseModal();
-        })
-        .catch((error) => {
-          console.error("Error updating product:", error);
-        });
+        );
+        fetchData();
+        handleCloseModal();
+      }
+    } catch (error) {
+      console.error("Error updating product:", error);
     }
   };
 
@@ -111,33 +126,32 @@ const Products = () => {
     setFilteredData(filteredGemstones);
   }, [searchQuery, product]);
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
+    try {
+      const res = await axios.delete(`https://outrageous-shoulder-pads-fly.cyclic.app/products/delete/${id}`);
 
-    axios
-      .delete(`https://outrageous-shoulder-pads-fly.cyclic.app/products/delete/${id}`)
-      .then((res) => {
-        if(res.data.state){
-          renderComp()
-          toast({
-            title: 'Product deleted successfully!!',
-            status: 'success',
-            duration: 3000,
-            position:'top-right',
-            isClosable: true,
-          })
-        }
-      })
-      .catch((error) => {
+      if (res.data.state) {
+        renderComp();
         toast({
-          title: 'Error deleting product!!',
-          status: 'error',
+          title: 'Product deleted successfully!!',
+          status: 'success',
           duration: 3000,
-          position:'top-right',
+          position: 'top-right',
           isClosable: true,
-        })
-        console.error("Error deleting product:", error);
+        });
+      }
+    } catch (error) {
+      toast({
+        title: 'Error deleting product!!',
+        status: 'error',
+        duration: 3000,
+        position: 'top-right',
+        isClosable: true,
       });
+      console.error("Error deleting product:", error);
+    }
   };
+
 
 
 
@@ -240,6 +254,8 @@ const handleSubmit = async () => {
 
 
 
+
+
 useEffect(() => {
   fetchData();
 }, [render]);
@@ -289,11 +305,22 @@ useEffect(() => {
             <FormLabel>Title</FormLabel>
             <Input type="text" name="title" onChange={handleChange} value={formData.title} placeholder="product name"/>
           </FormControl>
-
           <FormControl>
             <FormLabel>Image</FormLabel>
-            <Input type="text" name="image" onChange={handleChange} value={formData.image} placeholder="image address"/>
+            <Input type="text" name="image" onChange={handleChange} value={formData.image = image} placeholder="image address"/>
           </FormControl>
+         {/* image uplaod code goes here   */}
+          <Box className="container">
+       <UploadButton options={options}
+                onComplete={files => setImage(files.map(x => x.fileUrl).join("\n"))}>
+    {({onClick}) =>
+      <Button mt={7} colorScheme="green" onClick={onClick}>
+       Image Upload..
+      </Button>
+    }
+  </UploadButton>
+    </Box>
+    
         </Box>
          
 
@@ -400,12 +427,12 @@ useEffect(() => {
                   />
                 </Box>
                 <HStack justifyContent="flex-end">
-                  <Button
+                  {/* <Button
                     colorScheme="teal"
                     onClick={() => handleEditClick(gemstone)}
                   >
                     Edit
-                  </Button>
+                  </Button> */}
                   <Button
                     colorScheme="red"
                     onClick={() => handleDelete(gemstone._id)}

@@ -13,7 +13,7 @@ export const RevenueProvider = ({ children }) => {
       try {
         // Fetch order data
         const ordersResponse = await axios.get(
-          "https://outrageous-shoulder-pads-fly.cyclic.app/order/all"
+          "http://localhost:4000/order/all"
         );
 
         // Update total orders
@@ -30,7 +30,7 @@ export const RevenueProvider = ({ children }) => {
 
         // Fetch user data
         const usersResponse = await axios.get(
-          "https://outrageous-shoulder-pads-fly.cyclic.app/user"
+          "http://localhost:4000/user"
         );
   if(usersResponse.data.users.length>0){
     setTotalUsers(usersResponse.data.users.length)
