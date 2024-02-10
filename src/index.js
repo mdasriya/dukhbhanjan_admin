@@ -18,6 +18,8 @@ import { Box } from "@chakra-ui/react";
 import Users from "./routes/Users";
 import Login from "./components/Login";
 import PrivateRoutes from "./components/PrivateRoutes";
+import Yantra from "./routes/Yantra";
+import WorkShip from "./routes/WorkShip";
 const AppLayout = () => (
   <>
     <Box display={"flex"}>
@@ -42,6 +44,14 @@ const router = createBrowserRouter([
       {
         path: "products",
         element: <PrivateRoutes><Products /></PrivateRoutes>,
+      },
+      {
+        path: "yantra",
+        element: <PrivateRoutes><Yantra /></PrivateRoutes>,
+      },
+      {
+        path: "workShip",
+        element: <PrivateRoutes><WorkShip /></PrivateRoutes>,
       },
       {
         path: "kundalidata",

@@ -17,11 +17,12 @@ export const SidebarData = [
     cName: "nav-text",
   },
   {
-    title: " Products",
+    title: "Products",
     path: "/products",
     icon: <FaIcons.FaCartPlus />,
     cName: "nav-text",
   },
+  
   {
     title: "Contact Data",
     path: "/contactdata",

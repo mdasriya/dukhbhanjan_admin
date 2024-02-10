@@ -72,7 +72,7 @@ const Kundali = () => {
             {" "}
             Filter
           </Button>
-        </InputGroup>
+        </InputGroup> 
       </Center>
       {loading ? (
         <Center>

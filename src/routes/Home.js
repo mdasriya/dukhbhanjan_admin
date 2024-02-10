@@ -17,10 +17,10 @@ import { useRevenue } from "../Context";
 import { IoBagCheckOutline } from "react-icons/io5";
 import { FaUsers } from "react-icons/fa";
 function Home() {
-  const { totalRevenue, totalOrders, totalUsers } = useRevenue();
+  const { totalRevenue, totalOrders,totalWorkShip, totalUsers,totalYantra,totalgamestone } = useRevenue();
 
 
-  console.log(totalRevenue, totalOrders, totalUsers)
+  let allOders = totalgamestone + totalYantra + totalWorkShip;
   return (
     <Box maxH={"100dvh"} overflow={"clip"}>
       <Center>
@@ -126,11 +126,11 @@ function Home() {
 
             <Stat>
               <StatNumber display={"flex"}>
-                <IoBagCheckOutline fontSize={"2rem"} p={"8px"} />9
+                <IoBagCheckOutline fontSize={"2rem"} p={"8px"} />{allOders}
               </StatNumber>
               <StatHelpText></StatHelpText>
             </Stat>
-          </CardBody>
+          </CardBody> 
         </Card>
         <Card
           maxW="sm"

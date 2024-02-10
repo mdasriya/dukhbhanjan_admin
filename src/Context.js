@@ -7,6 +7,82 @@ export const RevenueProvider = ({ children }) => {
   const [totalRevenue, setTotalRevenue] = useState(0);
   const [totalOrders, setTotalOrders] = useState(0);
   const [totalUsers, setTotalUsers] = useState(0);
+  const [totalYantra, setTotalYantra] = useState(0);
+  const [totalgamestone, setTotalGemstone] = useState(0);
+  const [totalWorkShip, setTotalWorkShip] = useState(0);
+ 
+
+
+useEffect(()=> {
+
+  // fetch Yantra code
+  const fetchData = async () => {
+    try {
+      // Fetch order data
+      const ordersResponse = await axios.get(
+        "https://outrageous-shoulder-pads-fly.cyclic.app/order/all"
+      );
+
+      // Update total orders
+      setTotalOrders(ordersResponse.data.length);
+
+      // Calculate total revenue
+      const revenue = ordersResponse.data.reduce(
+        (acc, data) => acc + data.price * data.quantity,
+        0
+      );
+
+      // Update total revenue
+      setTotalRevenue(revenue);
+
+      // Fetch user data
+      const usersResponse = await axios.get(
+        "https://outrageous-shoulder-pads-fly.cyclic.app/yantra"
+      );
+if(usersResponse.data){
+  console.log("yantra",usersResponse.data.length)
+   setTotalYantra(usersResponse.data.length)
+}else{
+  setTotalUsers(0)
+}
+  console.log("user", )
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+// fetch gamesStone code 
+
+const yantaFetch = async () => {
+  
+  try {
+    const response = await axios.get(
+      "https://outrageous-shoulder-pads-fly.cyclic.app/products"
+    );
+if(response.data){
+   setTotalGemstone(response.data.length); 
+}
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
+const WorkShipFetch = async () => {
+  
+  try {
+    const response = await axios.get(
+      "https://outrageous-shoulder-pads-fly.cyclic.app/workShip"
+    );
+if(response.data){
+  console.log("workship",response.data.length)
+   setTotalWorkShip(response.data.length); 
+}
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
+  fetchData();
+  yantaFetch();
+  WorkShipFetch()
+},[])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,6 +142,8 @@ export const RevenueProvider = ({ children }) => {
         updateTotalOrders,
         totalUsers,
         updateTotalUsers,
+        totalYantra,
+        totalgamestone,totalWorkShip
       }}
     >
       {children}
