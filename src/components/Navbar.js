@@ -151,6 +151,20 @@ console.log("location", location.pathname)
                             WorkShip({totalWorkShip})
                           </Text>
                         </Box>
+                        <Box display={"flex"}>
+                          <BsArrowRightShort
+                            size={20}
+                            style={{ marginTop: "5px" }}
+                          />
+                          <Text
+                            color={"gray"}
+                            _hover={{ color: "black" }}
+                            fontSize={18}
+                            onClick={() => navigate("/aryuvedic")}
+                          >
+                            Aryuvedic(0)
+                          </Text>
+                        </Box>
                       </AccordionPanel>
                     </AccordionItem>
                   </Accordion>

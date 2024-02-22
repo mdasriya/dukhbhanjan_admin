@@ -20,6 +20,7 @@ import Login from "./components/Login";
 import PrivateRoutes from "./components/PrivateRoutes";
 import Yantra from "./routes/Yantra";
 import WorkShip from "./routes/WorkShip";
+import Aryuvedic from "./routes/Aryuvedic";
 const AppLayout = () => (
   <>
     <Box display={"flex"}>
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "workShip",
         element: <PrivateRoutes><WorkShip /></PrivateRoutes>,
+      },
+      {
+        path: "aryuvedic",
+        element: <PrivateRoutes><Aryuvedic /></PrivateRoutes>,
       },
       {
         path: "kundalidata",
