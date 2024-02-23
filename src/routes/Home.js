@@ -17,10 +17,10 @@ import { useRevenue } from "../Context";
 import { IoBagCheckOutline } from "react-icons/io5";
 import { FaUsers } from "react-icons/fa";
 function Home() {
-  const { totalRevenue, totalOrders,totalWorkShip, totalUsers,totalYantra,totalgamestone } = useRevenue();
+  const { totalRevenue, totalOrders,totalWorkShip, totalUsers,totalYantra,totalgamestone,totalAryuvedic } = useRevenue();
 
 
-  let allOders = totalgamestone + totalYantra + totalWorkShip;
+  let allOders = totalgamestone + totalYantra + totalWorkShip + totalAryuvedic;
   return (
     <Box maxH={"100dvh"} overflow={"clip"}>
       <Center>

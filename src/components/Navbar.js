@@ -32,7 +32,7 @@ function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   const toast = useToast();
-  const { totalWorkShip, totalYantra, totalgamestone } = useRevenue();
+  const { totalWorkShip, totalYantra, totalgamestone,totalAryuvedic } = useRevenue();
 
   const handleLogout = () => {
     toast({
@@ -162,7 +162,7 @@ function Navbar() {
                             fontSize={18}
                             onClick={() => navigate("/aryuvedic")}
                           >
-                            Aryuvedic(0)
+                            Aryuvedic({totalAryuvedic})
                           </Text>
                         </Box>
                       </AccordionPanel>

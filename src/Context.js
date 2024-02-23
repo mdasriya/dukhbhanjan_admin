@@ -10,6 +10,7 @@ export const RevenueProvider = ({ children }) => {
   const [totalYantra, setTotalYantra] = useState(0);
   const [totalgamestone, setTotalGemstone] = useState(0);
   const [totalWorkShip, setTotalWorkShip] = useState(0);
+  const [totalAryuvedic, setTotalAryuvedic] = useState(0);
  
 
 
@@ -79,9 +80,24 @@ if(response.data){
     console.error("Error fetching data:", error);
   }
 };
+const handleAryuvedic = async () => {
+  
+  try {
+    const response = await axios.get(
+      "https://outrageous-shoulder-pads-fly.cyclic.app/medecine"
+    );
+if(response.data){
+
+  setTotalAryuvedic(response.data.length); 
+}
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
   fetchData();
   yantaFetch();
   WorkShipFetch()
+  handleAryuvedic()
 },[])
 
   useEffect(() => {
@@ -143,6 +159,7 @@ if(response.data){
         totalUsers,
         updateTotalUsers,
         totalYantra,
+        totalAryuvedic,
         totalgamestone,totalWorkShip
       }}
     >
