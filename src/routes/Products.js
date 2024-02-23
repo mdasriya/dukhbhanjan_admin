@@ -267,7 +267,7 @@ useEffect(() => {
   fetchData();
 }, [render]);
 
-console.log(textColor)
+
 
   return (
     <Box>

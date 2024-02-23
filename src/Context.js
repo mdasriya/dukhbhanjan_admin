@@ -40,7 +40,7 @@ useEffect(()=> {
         "https://outrageous-shoulder-pads-fly.cyclic.app/yantra"
       );
 if(usersResponse.data){
-  console.log("yantra",usersResponse.data.length)
+ 
    setTotalYantra(usersResponse.data.length)
 }else{
   setTotalUsers(0)
@@ -72,7 +72,7 @@ const WorkShipFetch = async () => {
       "https://outrageous-shoulder-pads-fly.cyclic.app/workShip"
     );
 if(response.data){
-  console.log("workship",response.data.length)
+
    setTotalWorkShip(response.data.length); 
 }
   } catch (error) {

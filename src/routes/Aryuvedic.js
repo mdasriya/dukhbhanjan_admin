@@ -64,10 +64,11 @@ import {
       setAddLoading(true)
       try {
         const response = await axios.get(
-          "https://outrageous-shoulder-pads-fly.cyclic.app/workShi"
+          "https://outrageous-shoulder-pads-fly.cyclic.app/medecine"
+          
         );
-    setAddLoading(false)
         setProducts(response.data);
+    setAddLoading(false)
       } catch (error) {
         setAddLoading(false)
         console.error("Error fetching data:", error);
@@ -103,7 +104,7 @@ import {
       try {
         if (editingProduct && editingProduct._id) {
           const res = await axios.put(
-            `https://outrageous-shoulder-pads-fly.cyclic.app/workShip/${editingProduct._id}`,
+            `https://outrageous-shoulder-pads-fly.cyclic.app/medecine/${editingProduct._id}`,
             editingProduct
             );
           fetchData();
@@ -123,7 +124,7 @@ import {
   
     const handleDelete = async (id) => {
       try {
-        const res = await axios.delete(`https://outrageous-shoulder-pads-fly.cyclic.app/workShip/delete/${id}`);
+        const res = await axios.delete(`https://outrageous-shoulder-pads-fly.cyclic.app/medecine/delete/${id}`);
   
         if (res.data.state) {
           renderComp();
@@ -176,11 +177,10 @@ import {
    setAddLoading(true);
   
   
-  
-    console.log(formData)
+  console.log("ayu",product)
     try {
     
-       const res = await axios.post("https://outrageous-shoulder-pads-fly.cyclic.app/workShip/create", formData);
+       const res = await axios.post("https://outrageous-shoulder-pads-fly.cyclic.app/medecine/create", formData);
   
        if (res.data.state) {
         toast({

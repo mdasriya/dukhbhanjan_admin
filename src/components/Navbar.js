@@ -33,7 +33,7 @@ function Navbar() {
   const location = useLocation();
   const toast = useToast();
   const { totalWorkShip, totalYantra, totalgamestone } = useRevenue();
-console.log("location", location.pathname)
+
   const handleLogout = () => {
     toast({
       title: "Logout successfully!!",
