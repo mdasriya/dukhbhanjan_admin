@@ -49,7 +49,7 @@ import {
   
   const textColor = localStorage.getItem("chakra-ui-color-mode")
     const options = {
-      apiKey: "public_W142iSZ87iXtCgUK4ApLiW9ZU6X3",
+      apiKey: "public_kW15bwHB6bQ5Wv42R9fgNg5vPtjH",
       maxFileCount: 1,
       showFinishButton: true,
      
@@ -64,7 +64,7 @@ import {
       setAddLoading(true)
       try {
         const response = await axios.get(
-          "https://outrageous-shoulder-pads-fly.cyclic.app/medecine"
+          "http://localhost:4000/medecine"
           
         );
         setProducts(response.data);
@@ -104,7 +104,7 @@ import {
       try {
         if (editingProduct && editingProduct._id) {
           const res = await axios.put(
-            `https://outrageous-shoulder-pads-fly.cyclic.app/medecine/${editingProduct._id}`,
+            `http://localhost:4000/medecine/${editingProduct._id}`,
             editingProduct
             );
           fetchData();
@@ -124,7 +124,7 @@ import {
   
     const handleDelete = async (id) => {
       try {
-        const res = await axios.delete(`https://outrageous-shoulder-pads-fly.cyclic.app/medecine/delete/${id}`);
+        const res = await axios.delete(`http://localhost:4000/medecine/delete/${id}`);
   
         if (res.data.state) {
           renderComp();
@@ -180,7 +180,7 @@ import {
   console.log("ayu",product)
     try {
     
-       const res = await axios.post("https://outrageous-shoulder-pads-fly.cyclic.app/medecine/create", formData);
+       const res = await axios.post("http://localhost:4000/medecine/create", formData);
   
        if (res.data.state) {
         toast({
@@ -302,9 +302,9 @@ import {
             </FormControl>
             {/* Submit Button */}
           {addLoading ? <Button isLoading mt={4} ml={2}  spinner={<BeatLoader size={8} color='white' />} colorScheme="yellow"  onClick={handleSubmit}>
-             ADD WorkShip
+             ADD Aryuvedic
              </Button> :   <Button mt={4} ml={2} colorScheme="yellow"  onClick={handleSubmit}>
-             ADD WorkShip
+             ADD Aryuvedic
              </Button>}
           </Box>
            </ModalBody>

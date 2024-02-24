@@ -49,7 +49,7 @@ const Yantra = () => {
 
 const textColor = localStorage.getItem("chakra-ui-color-mode")
   const options = {
-    apiKey: "public_W142iSZ87iXtCgUK4ApLiW9ZU6X3",
+    apiKey: "public_kW15bwHB6bQ5Wv42R9fgNg5vPtjH",
     maxFileCount: 1,
     showFinishButton: true,
    
@@ -64,7 +64,7 @@ const textColor = localStorage.getItem("chakra-ui-color-mode")
     setAddLoading(true)
     try {
       const response = await axios.get(
-        "https://outrageous-shoulder-pads-fly.cyclic.app/workShip"
+        "http://localhost:4000/workShip"
       );
   setAddLoading(false)
       setProducts(response.data);
@@ -103,7 +103,7 @@ const textColor = localStorage.getItem("chakra-ui-color-mode")
     try {
       if (editingProduct && editingProduct._id) {
         const res = await axios.put(
-          `https://outrageous-shoulder-pads-fly.cyclic.app/workShip/${editingProduct._id}`,
+          `http://localhost:4000/workShip/${editingProduct._id}`,
           editingProduct
           );
         fetchData();
@@ -123,7 +123,7 @@ const textColor = localStorage.getItem("chakra-ui-color-mode")
 
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete(`https://outrageous-shoulder-pads-fly.cyclic.app/workShip/delete/${id}`);
+      const res = await axios.delete(`http://localhost:4000/workShip/delete/${id}`);
 
       if (res.data.state) {
         renderComp();
@@ -180,7 +180,7 @@ const handleSubmit = async () => {
   console.log(formData)
   try {
   
-     const res = await axios.post("https://outrageous-shoulder-pads-fly.cyclic.app/workShip/create", formData);
+     const res = await axios.post("http://localhost:4000/workShip/create", formData);
 
      if (res.data.state) {
       toast({
