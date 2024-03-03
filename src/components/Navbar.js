@@ -1,5 +1,5 @@
 import { RiLogoutCircleRFill } from "react-icons/ri";
-import { MdOutlineProductionQuantityLimits } from "react-icons/md";
+import { MdArrowForwardIos, MdOutlineProductionQuantityLimits } from "react-icons/md";
 import React from "react";
 import {
   Box,
@@ -14,6 +14,7 @@ import {
   AccordionButton,
   AccordionIcon,
   AccordionPanel,
+  Button,
 } from "@chakra-ui/react";
 import {
   Link as ReactRouterLink,
@@ -32,7 +33,11 @@ function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   const toast = useToast();
-  const { totalWorkShip, totalYantra, totalgamestone,totalAryuvedic } = useRevenue();
+  const { totalWorkShip, totalYantra,setNavWidth, totalgamestone,totalAryuvedic } = useRevenue();
+
+const handleHideNav = () => {
+setNavWidth((prev) => !prev)
+}
 
   const handleLogout = () => {
     toast({
@@ -69,11 +74,16 @@ function Navbar() {
                   flexDirection={"row"}
                   position={"relative"}
                   right={"2rem"}
+                  alignItems={"center"}
                 >
                   <Image src={sun} height={"10"} width={"10"} mr={"2"} />
                   <Text mt={2} fontSize="20px" fontWeight={500}>
                     Dukha Bhanjan
                   </Text>
+                  <Button variant={"outline"} onClick={handleHideNav} rounded={"full"}>
+
+                  <MdArrowForwardIos  />
+                  </Button>
                 </Box>
               </Link>
             </ListItem>

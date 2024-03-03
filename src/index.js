@@ -21,13 +21,15 @@ import PrivateRoutes from "./components/PrivateRoutes";
 import Yantra from "./routes/Yantra";
 import WorkShip from "./routes/WorkShip";
 import Aryuvedic from "./routes/Aryuvedic";
+
+
 const AppLayout = () => (
   <>
     <Box display={"flex"}>
-      <Box flex="15%">
+      <Box width={"15%"} >
         <Navbar />
       </Box>
-      <Box flex="85%">
+      <Box width={"85%"}>
         <Outlet />
       </Box>
     </Box>

@@ -16,6 +16,7 @@ import {
   Badge,
   Button,
   useToast,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import axios from "axios";
@@ -30,7 +31,9 @@ const Orders = () => {
   const { updateTotalRevenue, updateTotalOrders } = useRevenue();
   const [loading, setLoading] = useState(true);
   const [render, setRender] = useState(false)
-
+  const [loadingStatus, setLoadingStatus] = useState(false)
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const cancelRef = React.useRef()
 const renderComp = () => {
   setRender((prev)=> !prev)
 }
@@ -83,7 +86,7 @@ const renderComp = () => {
 
 
   const handleEditOrderStatus = async(id, status) => {
-    
+    setLoadingStatus(true)
     if(status=== "dispatch"){
       const response =  await axios.patch(`https://outrageous-shoulder-pads-fly.cyclic.app/order/update/${id}`, {status:"dispatch"})
       try {
@@ -95,6 +98,7 @@ const renderComp = () => {
             duration: 3000,
             isClosable: true,
           })
+          setLoadingStatus(false)
           renderComp()
          } 
       } catch (error) {
@@ -105,6 +109,7 @@ const renderComp = () => {
           duration: 3000,
           isClosable: true,
         })
+        setLoadingStatus(false)
         console.log(error.message)
       }
 
@@ -120,6 +125,7 @@ const renderComp = () => {
             duration: 3000,
             isClosable: true,
           })
+          setLoadingStatus(false)
           renderComp()
          }
       } catch (error) {
@@ -131,6 +137,7 @@ const renderComp = () => {
           isClosable: true,
         })
         console.log(error.message)
+          setLoadingStatus(false)
       }
     
     }
@@ -146,6 +153,7 @@ const renderComp = () => {
 
 
   return (
+    <>
     <Box p={4} textAlign="center">
       <Heading mb={4}>Ordered Data</Heading>
       <Center>
@@ -174,7 +182,7 @@ const renderComp = () => {
           />
         </Center>
       ) : (
-        <Table variant="striped" colorScheme="orange">
+        <Table maxWidth={"500px"} variant="striped" colorScheme="orange" overflowX={"hidden"}    >
           <Thead>
             <Tr>
               
@@ -187,7 +195,7 @@ const renderComp = () => {
               <Th>Quality</Th>
               <Th>Address</Th>
               <Th>Order Status</Th>
-              <Th>Total Amount</Th>
+              {/* <Th>Total Amount</Th> */}
             </Tr>
           </Thead>
           <Tbody>
@@ -196,7 +204,7 @@ const renderComp = () => {
                 (address) => address.UserId === data.UserId
               );
               // const postData = add.find((code) => code.UserId === data.UserId);
-
+              
               return (
                 <Tr key={index}>
                 
@@ -215,11 +223,16 @@ const renderComp = () => {
                   </Td>
                  
                   <Td>  <Box gap={2} display={"flex"} flexDirection={"column"}>
-               {data.cancel === "process" ? <Badge  cursor={"pointer"} colorScheme={data.status === "delivered"?"teal":"purple"} >{data.status}</Badge>:<Badge  cursor={"pointer"} colorScheme='red'>{data.cancel}</Badge> }     
-                    <Button size='xs' isDisabled={data.status === "delivered" || data.status === "dispatch" ||data.cancel==="canceled"} cursor={"pointer"} colorScheme='blue' onClick={()=>handleEditOrderStatus(data._id, "dispatch")}>dispatch</Button>
+              <Box >
+              {data.cancel === "process" ? <Badge  cursor={"pointer"} colorScheme={data.status === "delivered"?"teal":"purple"} >{data.status}</Badge>:<Badge  cursor={"pointer"} colorScheme='red'>{data.cancel}</Badge> }     
+             {data.status === "delivered" && <Button mt={1} cursor={"pointer"} colorScheme='red' size='xs'>Order Closed</Button>}  
+              
+              </Box>
+             
+               <Button size='xs' isDisabled={data.status === "delivered" || data.status === "dispatch" ||data.cancel==="canceled"} cursor={"pointer"} colorScheme='blue' onClick={()=>handleEditOrderStatus(data._id, "dispatch")}>dispatch</Button>
                     <Button size='xs' isDisabled={data.status === "delivered" || data.cancel==="canceled"} cursor={"pointer"} colorScheme='green' onClick={()=>handleEditOrderStatus(data._id, "delivered")}>delivered</Button>
                     </Box></Td>
-                  <Td>{` ₹${data.price * data.quantity}`}</Td>
+                  {/* <Td>{` ₹${data.price * data.quantity}`}</Td> */}
                 </Tr>
               );
             })}
@@ -227,6 +240,8 @@ const renderComp = () => {
         </Table>
       )}
     </Box>
+    
+                      </>
   );
 };
 

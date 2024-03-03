@@ -52,7 +52,7 @@ const ContactData = () => {
 
   return (
     <Box p={4} textAlign="center">
-      <Heading mb={4}>Contact Data</Heading>
+      <Heading mb={4}>Contact & Remedies  Data</Heading>
       <Center>
         <InputGroup mb={4} width={"50%"}>
           <InputLeftElement pointerEvents="none">

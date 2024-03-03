@@ -11,6 +11,8 @@ export const RevenueProvider = ({ children }) => {
   const [totalgamestone, setTotalGemstone] = useState(0);
   const [totalWorkShip, setTotalWorkShip] = useState(0);
   const [totalAryuvedic, setTotalAryuvedic] = useState(0);
+   const [navWidth, setNavWidth] = useState(false)
+
  
 
 
@@ -160,6 +162,7 @@ if(response.data){
         updateTotalUsers,
         totalYantra,
         totalAryuvedic,
+        setNavWidth,
         totalgamestone,totalWorkShip
       }}
     >
