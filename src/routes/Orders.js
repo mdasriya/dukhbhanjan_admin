@@ -42,7 +42,7 @@ const renderComp = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:4000/order/all"
+        "https://outrageous-shoulder-pads-fly.cyclic.app/order/all"
       );
       setOdata(response.data.reverse());
       setLoading(false);
@@ -59,7 +59,7 @@ const renderComp = () => {
   const fetchAdd = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:4000/address"
+        "https://outrageous-shoulder-pads-fly.cyclic.app/address"
       );
       setAdd(response.data);
     } catch (error) {
@@ -88,7 +88,7 @@ const renderComp = () => {
   const handleEditOrderStatus = async(id, status) => {
     setLoadingStatus(true)
     if(status=== "dispatch"){
-      const response =  await axios.patch(`http://localhost:4000/order/update/${id}`, {status:"dispatch"})
+      const response =  await axios.patch(`https://outrageous-shoulder-pads-fly.cyclic.app/order/update/${id}`, {status:"dispatch"})
       try {
         if(response.data.state){
           toast({
@@ -116,7 +116,7 @@ const renderComp = () => {
 
     }else{
       try {
-        const response =  await axios.patch(`http://localhost:4000/order/update/${id}`, {status:"delivered"})
+        const response =  await axios.patch(`https://outrageous-shoulder-pads-fly.cyclic.app/order/update/${id}`, {status:"delivered"})
         if(response.data.state){
           toast({
             title: response.data.msg,
