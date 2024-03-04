@@ -26,7 +26,7 @@ const ContactData = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https://outrageous-shoulder-pads-fly.cyclic.app/contact"
+        "http://localhost:4000/contact"
       );
       // console.log(data);
 

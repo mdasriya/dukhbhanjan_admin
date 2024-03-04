@@ -23,7 +23,7 @@ useEffect(()=> {
     try {
       // Fetch order data
       const ordersResponse = await axios.get(
-        "https://outrageous-shoulder-pads-fly.cyclic.app/order/all"
+        "http://localhost:4000/order/all"
       );
 
       // Update total orders
@@ -40,7 +40,7 @@ useEffect(()=> {
 
       // Fetch user data
       const usersResponse = await axios.get(
-        "https://outrageous-shoulder-pads-fly.cyclic.app/yantra"
+        "http://localhost:4000/yantra"
       );
 if(usersResponse.data){
  
@@ -59,7 +59,7 @@ const yantaFetch = async () => {
   
   try {
     const response = await axios.get(
-      "https://outrageous-shoulder-pads-fly.cyclic.app/products"
+      "http://localhost:4000/products"
     );
 if(response.data){
    setTotalGemstone(response.data.length); 
@@ -72,7 +72,7 @@ const WorkShipFetch = async () => {
   
   try {
     const response = await axios.get(
-      "https://outrageous-shoulder-pads-fly.cyclic.app/workShip"
+      "http://localhost:4000/workShip"
     );
 if(response.data){
 
@@ -86,7 +86,7 @@ const handleAryuvedic = async () => {
   
   try {
     const response = await axios.get(
-      "https://outrageous-shoulder-pads-fly.cyclic.app/medecine"
+      "http://localhost:4000/medecine"
     );
 if(response.data){
 
@@ -107,7 +107,7 @@ if(response.data){
       try {
         // Fetch order data
         const ordersResponse = await axios.get(
-          "https://outrageous-shoulder-pads-fly.cyclic.app/order/all"
+          "http://localhost:4000/order/all"
         );
 
         // Update total orders
@@ -124,7 +124,7 @@ if(response.data){
 
         // Fetch user data
         const usersResponse = await axios.get(
-          "https://outrageous-shoulder-pads-fly.cyclic.app/user"
+          "http://localhost:4000/user"
         );
   if(usersResponse.data.users.length>0){
     setTotalUsers(usersResponse.data.users.length)
