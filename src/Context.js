@@ -23,7 +23,7 @@ useEffect(()=> {
     try {
       // Fetch order data
       const ordersResponse = await axios.get(
-        "https://outrageous-shoulder-pads-fly.cyclic.app/order/all"
+        "https://dukhbhanjan.onrender.com/order/all"
       );
 
       // Update total orders
@@ -40,7 +40,7 @@ useEffect(()=> {
 
       // Fetch user data
       const usersResponse = await axios.get(
-        "https://outrageous-shoulder-pads-fly.cyclic.app/yantra"
+        "https://dukhbhanjan.onrender.com/yantra"
       );
 if(usersResponse.data){
  
@@ -59,7 +59,7 @@ const yantaFetch = async () => {
   
   try {
     const response = await axios.get(
-      "https://outrageous-shoulder-pads-fly.cyclic.app/products"
+      "https://dukhbhanjan.onrender.com/products"
     );
 if(response.data){
    setTotalGemstone(response.data.length); 
@@ -72,7 +72,7 @@ const WorkShipFetch = async () => {
   
   try {
     const response = await axios.get(
-      "https://outrageous-shoulder-pads-fly.cyclic.app/workShip"
+      "https://dukhbhanjan.onrender.com/workShip"
     );
 if(response.data){
 
@@ -86,7 +86,7 @@ const handleAryuvedic = async () => {
   
   try {
     const response = await axios.get(
-      "https://outrageous-shoulder-pads-fly.cyclic.app/medecine"
+      "https://dukhbhanjan.onrender.com/medecine"
     );
 if(response.data){
 
@@ -107,7 +107,7 @@ if(response.data){
       try {
         // Fetch order data
         const ordersResponse = await axios.get(
-          "https://outrageous-shoulder-pads-fly.cyclic.app/order/all"
+          "https://dukhbhanjan.onrender.com/order/all"
         );
 
         // Update total orders
@@ -124,7 +124,7 @@ if(response.data){
 
         // Fetch user data
         const usersResponse = await axios.get(
-          "https://outrageous-shoulder-pads-fly.cyclic.app/user"
+          "https://dukhbhanjan.onrender.com/user"
         );
   if(usersResponse.data.users.length>0){
     setTotalUsers(usersResponse.data.users.length)

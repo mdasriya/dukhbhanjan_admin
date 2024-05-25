@@ -27,7 +27,7 @@ const Kundali = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https://outrageous-shoulder-pads-fly.cyclic.app/kundali"
+        "https://dukhbhanjan.onrender.com/kundali"
       );
       // console.log(data);
       const newData = response.data;
